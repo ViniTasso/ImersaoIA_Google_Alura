@@ -13,6 +13,20 @@ import google.ai.generativelanguage as glm
 
 
 def texto_padrao_dicas(texto, idioma="inglês"):
+    """
+    Descrição:
+        Esta função gera um texto padrão para solicitar ao modelo de geração de texto que 
+        forneça três opções de resposta para uma determinada frase em um idioma específico. 
+        O texto também inclui um exemplo de como o resultado deve ser apresentado, com as 
+        respostas e suas traduções correspondentes.
+
+    Parâmetros:
+        - `texto`: A frase para a qual se deseja gerar opções de resposta.
+        - `idioma`: O idioma em que a resposta deve ser gerada (padrão é "inglês").
+
+    Retorno:
+        - Uma string contendo o texto padrão com as instruções para gerar opções de resposta.
+    """
     return f"""
 Me de 3 opções de resposta para responder a seguinte frase: \n
 {texto} \n
@@ -29,34 +43,46 @@ Substitua a palavra texto pelo resultado obtido. Mostre também um tópico de "D
 
 def possiveis_respostas(texto):
     """
-        Frase utilizada no google:
+    Descrição:
+    E   sta função utiliza o modelo de geração de texto para gerar opções de resposta, 
+    traduções e dicas com base em um texto padrão.
 
-Como eu posso responder a seguinte frase em francês "Bonjour!", me de 3 opções de resposta e siga o exemplo de resultado
-Resposta 1: texto;
-Traducao 1: texto;
+    Parâmetros:
+        - `texto`: A frase para a qual se deseja gerar opções de resposta.
 
-Resposta 2: texto;
-Traducao 2: texto;
+    Retorno:
+        - Um dicionário contendo as opções de resposta, traduções e dicas.
 
-Resposta 3: texto;
-Traducao 3: texto;
+    Frase utilizada no google,
+    Exemplo de entrada e saída:
 
-Substitua a palavra texto pelo resultado obtido.
+        Como eu posso responder a seguinte frase em francês "Bonjour!", me de 3 opções de 
+        resposta e siga o exemplo de resultado
+        Resposta 1: texto;
+        Traducao 1: texto;
 
-Mostre também um tópico de "Dicas:"
+        Resposta 2: texto;
+        Traducao 2: texto;
 
-        RESPOSTA DO GOOGLE
+        Resposta 3: texto;
+        Traducao 3: texto;
 
-Resposta 1: Bonjour!
-Tradução 1: Olá!
-Resposta 2: Salut!
-Tradução 2: Oi!
-Resposta 3: Coucou!
-Tradução 3: Alô!
-Dicas:
-"Bonjour!" é a forma mais comum e educada de dizer "olá" em francês.
-"Salut!" é uma forma mais informal e é usada entre amigos ou familiares.
-"Coucou!" é uma forma ainda mais informal e é usada entre pessoas muito próximas.
+        Substitua a palavra texto pelo resultado obtido.
+
+        Mostre também um tópico de "Dicas:"
+
+    RESPOSTA DO GOOGLE
+
+        Resposta 1: Bonjour!
+        Tradução 1: Olá!
+        Resposta 2: Salut!
+        Tradução 2: Oi!
+        Resposta 3: Coucou!
+        Tradução 3: Alô!
+        Dicas:
+        "Bonjour!" é a forma mais comum e educada de dizer "olá" em francês.
+        "Salut!" é uma forma mais informal e é usada entre amigos ou familiares.
+        "Coucou!" é uma forma ainda mais informal e é usada entre pessoas muito próximas.
 
     """
     modelAI = model
@@ -71,6 +97,18 @@ Dicas:
     return json.loads(resposta.text)
 
 def texto_padrao_JSON_dicas(texto):
+    """
+    Descrição:
+        Esta função gera um texto padrão com instruções para retornar um JSON descrevendo as 
+        respostas de frases, as traduções e as dicas com base em um texto fornecido.
+
+    Parâmetros:
+        - `texto`: O texto a ser incluído nas instruções.
+
+    Retorno:
+        - Uma string contendo o texto padrão com as instruções para retornar um JSON.
+
+    """
     return """\
 Por favor retorne JSON descrevendo as respostas de frases, as traduções e as dicas desse texto usando o seguinte schema: 
 
@@ -93,6 +131,14 @@ Aqui está o conteúdo:\n
     """
 
 def modelo_dicas_schema(texto):
+    """
+    
+    Descrição:
+        Esta função não está implementada no código fornecido. Ela parece ser destinada a criar 
+        um modelo baseado em expressões regulares para processar texto, mas atualmente retorna 
+        uma string vazia.
+
+    """
     modelAI = model
     add_to_database = util.cria_Schema()
     modelAI = modelAI = genai.GenerativeModel(
@@ -113,16 +159,51 @@ def modelo_dicas_schema(texto):
     return fc
 
 def modelo_dica_regex(text):
+    """
+    Descrição:
+        Esta função não está implementada no código fornecido. 
+        
+        Ela parece ser destinada a criar um modelo baseado em expressões regulares para 
+        processar texto usando funções de regex.
+
+    Parâmetros:
+        - `text`: O texto da pergunta a ser gerada.
+
+    Retorno:
+        - A ideia e gerar um retorno estruturado e até transformado em lista de cada tópico.
+    
+    """
     reg = text.splitlines()
     regex = util.RegEx(reg)
     return ""
 
 def unica_pergunta(text):
+    """
+    Descrição:
+        Esta função utiliza o modelo de geração de texto para fazer uma pergunta com base no texto fornecido.
+
+    Parâmetros:
+        - `text`: O texto da pergunta a ser gerada.
+
+    Retorno:
+        - Uma string contendo a pergunta gerada pelo modelo.
+
+    """
     modelAI = model
     resposta = modelAI.generate_content(text)
     return resposta.text
 
 def validaConversa(texto):
+    """
+    Descrição:
+        Esta função faz uma pergunta ao usuário para validar se um determinado texto está no idioma especificado.
+
+    Parâmetros:
+        - `texto`: O texto a ser validado.
+
+    Retorno:
+        - Um valor booleano indicando se o texto está no idioma especificado (True) ou não (False).
+    """
     resposta = unica_pergunta(f"O texto {texto}, está no idioma {idioma}? \nResponda apenas sim ou não.")
     if "sim" in str.lower(resposta):
         return True
@@ -130,6 +211,16 @@ def validaConversa(texto):
         return False
 
 def chat_principal():
+    """
+    Função responsável por iniciar o módulo de conversação.
+
+    Esta função inicia uma conversa interativa em um idioma escolhido pelo usuário, permitindo 
+    a prática de conversação sobre um determinado assunto. Durante a conversa, o usuário pode 
+    solicitar dicas sobre o que responder, obter traduções de frases e encerrar a conversação.
+
+    Returns:
+        None
+    """
     print("Bem vindo ao módulo de conversa!\n \n Vamos aprender um idioma na prática??")
     print("Escolha um assunto para conversar!")
     #ainda não esta funcionando
@@ -181,7 +272,20 @@ responder na conversa.\n      - Digite traduza para ver a tradução da conversa
 
 
 
+"""
+    Função principal que inicia o programa de estudo de idiomas.
 
+    Esta função solicita ao usuário que escolha um idioma para estudar e um tipo de estudo,
+    como treinamento de conversação, e inicia a interação de acordo com as escolhas feitas.
+
+    Parâmetros:
+    - Nenhum parâmetro é necessário.
+
+    Retorna:
+    - Nenhum valor é retornado explicitamente, pois a função interage com o usuário e inicia outras funções
+      conforme as escolhas feitas.
+
+    """
 
 GOOGLE_API_KEY=os.getenv('GOOGLE_API_KEY')
 genai.configure(api_key=GOOGLE_API_KEY)
