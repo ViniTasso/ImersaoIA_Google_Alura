@@ -6,6 +6,43 @@ A ideia principal do programa é oferecer uma plataforma interativa para pratica
 
 Além das informações fornecidas nesse documento, para maior esclarecimento foi criado um documento "PARA_O_DESENVOLVEDOR.docx", acesse-o !!
 
+## 💻 Utilize esse projeto
+<table>
+  <thead>
+    <tr>
+      <th>Dica</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+ <tbody>
+   <tr>
+      <td>
+        API KEY
+      </td>
+      <td>Para utilizar esse projeto é necessário ter uma API KEY fornecida pelo google.
+        Para isso acesso o site https://aistudio.google.com/app/
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Crie uma variável de ambiente
+      </td>
+      <td>Em seu computador, vá em configurações avançadas do sistema, na aba "Avançado" há um campo para criar variáveis de ambiente.
+      Crie sua variável com o nome "GOOGLE_API_KEY", coloque ai sua API KEY válida e já está tudo pronto!</td>
+    </tr>
+    <tr>
+      <td>
+        API KEY no código
+      </td>
+      <td>Está não é uma prática recomendada, mas é prática para um teste rápido.
+      procure o seguinte código:
+        <code>genai.configure(api_key=GOOGLE_API_KEY)</code>
+        é só substituir o GOOGLE_API_KEY pela sua API KEY válida.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 # Vale a pena usar?
 
 Você já se viu diante do desafio de praticar conversação em um novo idioma, mas não sabe por onde começar? Não se preocupe mais! Essa é a solução mais inteligente e interativa para aprimorar suas habilidades linguísticas.
@@ -44,3 +81,18 @@ Não deixe suas habilidades de conversação estagnarem. Experimente nosso progr
 6.	Inteligência Artificial Avançada: Implementar algoritmos de IA mais avançados para melhorar a qualidade das respostas e a relevância das dicas fornecidas durante a conversa.
 
 
+## 🤝 Desenvolvedor e Colaboradores
+
+Pessoa que idealizou e criou este projeto:
+
+<table>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/76502001?v=4" width="70px;" alt="Foto do Vinícius Tassi no GitHub"/><br>
+        <sub>
+          <b>Vinícius Tasso</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
